@@ -195,6 +195,11 @@ namespace PRN211_Project_LibraryManagement
 
         }
 
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            MyProfile myProfile = new MyProfile(currentAccount);
+            myProfile.Show();
+        }
     }
 }
 

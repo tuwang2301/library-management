@@ -97,7 +97,7 @@ namespace PRN211_Project_LibraryManagement
             iBr.AddBorrowing(newBorrowing);
             borrowBook.Quantity -= 1;
             iB.UpdateBook(borrowBook);
-            MessageBox.Show("BORROW SUCCESSFULLY!","SUCCESSFUL");
+            MessageBox.Show("BORROW SUCCESSFULLY!", "SUCCESSFUL");
             this.Close();
         }
 
