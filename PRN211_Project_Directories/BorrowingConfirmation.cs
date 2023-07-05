@@ -18,8 +18,9 @@ namespace PRN211_Project_LibraryManagement
         private Account borrowAccount;
         private Book borrowBook;
         private static IUserProfile iU = new UserProfileServices();
-        private static IBorrowing iB = new BorrowingServices();
+        private static IBorrowing iBr = new BorrowingServices();
         private static ICategory iC = new CategoryServices();
+        private static IBook iB = new BookServices();
         public BorrowingConfirmation()
         {
             InitializeComponent();
@@ -45,7 +46,7 @@ namespace PRN211_Project_LibraryManagement
             borrowBook.Category = iC.GetCategoryById(borrowBook.CategoryId);
             try
             {
-                string coverUrl = $"C:\\Users\\quang\\Documents\\FPT\\Summer2023\\PRN211\\PRN211_Project_Directories\\img\\{borrowBook.CoverPictureUrl}.jpg";
+                string coverUrl = $"C:\\Users\\quang\\Documents\\FPT\\Summer2023\\PRN211\\Library_Management\\library-management\\PRN211_Project_Directories\\img\\{borrowBook.CoverPictureUrl}.jpg";
                 // Kiểm tra xem tập tin ảnh có tồn tại không
                 if (System.IO.File.Exists(coverUrl))
                 {
@@ -83,7 +84,7 @@ namespace PRN211_Project_LibraryManagement
 
         private void buttonBorrow_Click(object sender, EventArgs e)
         {
-            List<Borrowing> myBorrowings = iB.getBorrowingsByAccountID(borrowAccount.AccountId);
+            List<Borrowing> myBorrowings = iBr.getBorrowingsByAccountID(borrowAccount.AccountId);
             DateTime today = DateTime.Today;
             DateTime due = dateTimePickerDue.Value;
             Borrowing newBorrowing = new Borrowing();
@@ -93,8 +94,10 @@ namespace PRN211_Project_LibraryManagement
             newBorrowing.BorrowDate = today;
             newBorrowing.DueDate = due;
             newBorrowing.StatusId = 1;
-            iB.AddBorrowing(newBorrowing);
-            MessageBox.Show("Borrow successfully!");
+            iBr.AddBorrowing(newBorrowing);
+            borrowBook.Quantity -= 1;
+            iB.UpdateBook(borrowBook);
+            MessageBox.Show("BORROW SUCCESSFULLY!","SUCCESSFUL");
             this.Close();
         }
 

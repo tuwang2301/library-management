@@ -76,7 +76,7 @@ namespace PRN211_Project_LibraryManagement
             book.Category = iCat.GetCategoryById(book.CategoryId);
             try
             {
-                string coverUrl = $"C:\\Users\\quang\\Documents\\FPT\\Summer2023\\PRN211\\PRN211_Project_Directories\\img\\{book.CoverPictureUrl}.jpg";
+                string coverUrl = $"C:\\Users\\quang\\Documents\\FPT\\Summer2023\\PRN211\\Library_Management\\library-management\\PRN211_Project_Directories\\img\\{book.CoverPictureUrl}.jpg";
                 // Kiểm tra xem tập tin ảnh có tồn tại không
                 if (System.IO.File.Exists(coverUrl))
                 {
@@ -111,7 +111,7 @@ namespace PRN211_Project_LibraryManagement
                 {
                     int id = int.Parse(dgvBooks.Rows[e.RowIndex].Cells["Column1"].Value.ToString());
                     Book book = iBook.GetBookById(id);
-                    string coverUrl = $"C:\\Users\\quang\\Documents\\FPT\\Summer2023\\PRN211\\PRN211_Project_Directories\\img\\{book.CoverPictureUrl}.jpg";
+                    string coverUrl = $"C:\\Users\\quang\\Documents\\FPT\\Summer2023\\PRN211\\Library_Management\\library-management\\PRN211_Project_Directories\\img\\{book.CoverPictureUrl}.jpg";
                     // Kiểm tra xem tập tin ảnh có tồn tại không
                     if (System.IO.File.Exists(coverUrl))
                     {
