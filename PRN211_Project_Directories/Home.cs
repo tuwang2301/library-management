@@ -58,6 +58,12 @@ namespace PRN211_Project_LibraryManagement
             }
         }
 
+        void refreshDGV()
+        {
+            List<Book> books = iBook.GetAllBooks();
+            displayDGV(books);
+        }
+
         private void Home_Load(object sender, EventArgs e)
         {
             List<Book> books = new List<Book>();
@@ -168,7 +174,7 @@ namespace PRN211_Project_LibraryManagement
             int bookId = int.Parse(lblId.Text);
             List<Borrowing> myBorrowings = iBorrowing.getBorrowingsByAccountID(currentAccount.AccountId);
             List<Borrowing> check = iBorrowing.getBorrowingsByBookID(myBorrowings, bookId);
-            if(check.Count > 0)
+            if (check.Count > 0)
             {
                 MessageBox.Show("You are borrowing this book!"
                   , "Borrowing", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -179,6 +185,11 @@ namespace PRN211_Project_LibraryManagement
                 BorrowingConfirmation borrowingConfirm = new BorrowingConfirmation(currentAccount, chosenbook);
                 borrowingConfirm.ShowDialog();
             }
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+            refreshDGV();
         }
     }
 

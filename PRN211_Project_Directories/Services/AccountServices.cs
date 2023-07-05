@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace PRN211_Project_LibraryManagement.Services
 {
@@ -40,6 +41,28 @@ namespace PRN211_Project_LibraryManagement.Services
             return result;
         }
 
+        public Account GetAccountByUsername(string username)
+        {
+            Account result = new Account();
+            using (var con = new LibraryManagementContext())
+            {
+                result = con.Accounts
+                .Where(x => x.Username.Equals(username)).FirstOrDefault();
+            }
+            return result;
+        }
+
+        public Account GetAccountById(int id)
+        {
+            Account result = new Account();
+            using (var con = new LibraryManagementContext())
+            {
+                result = con.Accounts
+                .Where(x => x.AccountId == id).FirstOrDefault();
+            }
+            return result;
+        }
+
         public List<Account> GetAllAccounts()
         {
             List<Account> result = new List<Account> ();
@@ -56,6 +79,19 @@ namespace PRN211_Project_LibraryManagement.Services
             {
                 con.Accounts.Update(account);
                 con.SaveChanges();
+            }
+        }
+
+        public int GetLastID()
+        {
+            using(var con = new LibraryManagementContext())
+            {
+                var lastAccount = con.Accounts.OrderByDescending(a => a.AccountId).FirstOrDefault();
+                if (lastAccount != null)
+                {
+                    return lastAccount.AccountId;
+                }
+                return 0; // hoặc giá trị mặc định khác tùy vào yêu cầu của bạn
             }
         }
     }

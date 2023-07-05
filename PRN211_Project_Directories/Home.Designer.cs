@@ -71,6 +71,7 @@
             // 
             // button1
             // 
+            button1.Cursor = Cursors.Hand;
             button1.Location = new Point(1677, 64);
             button1.Margin = new Padding(4, 3, 4, 3);
             button1.Name = "button1";
@@ -94,6 +95,7 @@
             dgvBooks.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgvBooks.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvBooks.Columns.AddRange(new DataGridViewColumn[] { Column1, Column2, Column3, Column4, Column5, Column6 });
+            dgvBooks.Cursor = Cursors.Hand;
             dgvBooks.Location = new Point(98, 223);
             dgvBooks.Margin = new Padding(4, 3, 4, 3);
             dgvBooks.Name = "dgvBooks";
@@ -163,6 +165,7 @@
             // label1
             // 
             label1.AutoSize = true;
+            label1.Cursor = Cursors.Hand;
             label1.Font = new Font("Cambria", 24F, FontStyle.Bold, GraphicsUnit.Point);
             label1.Location = new Point(98, 51);
             label1.Margin = new Padding(4, 0, 4, 0);
@@ -170,11 +173,13 @@
             label1.Size = new Size(301, 47);
             label1.TabIndex = 2;
             label1.Text = "LIST OF BOOKS";
+            label1.Click += label1_Click;
             // 
             // pictureBox1
             // 
             pictureBox1.BackgroundImage = (Image)resources.GetObject("pictureBox1.BackgroundImage");
             pictureBox1.BackgroundImageLayout = ImageLayout.Stretch;
+            pictureBox1.Cursor = Cursors.Hand;
             pictureBox1.Location = new Point(1562, 40);
             pictureBox1.Margin = new Padding(4, 3, 4, 3);
             pictureBox1.Name = "pictureBox1";
@@ -409,6 +414,7 @@
             // 
             // btnBorrow
             // 
+            btnBorrow.Cursor = Cursors.Hand;
             btnBorrow.Location = new Point(95, 556);
             btnBorrow.Margin = new Padding(4, 3, 4, 3);
             btnBorrow.Name = "btnBorrow";

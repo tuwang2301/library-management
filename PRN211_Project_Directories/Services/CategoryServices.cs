@@ -48,6 +48,19 @@ namespace PRN211_Project_LibraryManagement.Services
             return category;
         }
 
+        public int GetLastID()
+        {
+            using (var con = new LibraryManagementContext())
+            {
+                var last = con.Categories.OrderByDescending(a => a.CategoryId).FirstOrDefault();
+                if (last != null)
+                {
+                    return last.CategoryId;
+                }
+                return 0; // hoặc giá trị mặc định khác tùy vào yêu cầu của bạn
+            }
+        }
+
         public void UpdateCategory(Category category)
         {
             using (var con = new LibraryManagementContext())

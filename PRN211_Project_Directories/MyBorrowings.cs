@@ -51,11 +51,36 @@ namespace PRN211_Project_LibraryManagement
         void displayDGV(List<Borrowing> borrowingList)
         {
             dgvBorrowings.Rows.Clear();
+
             foreach (var item in borrowingList)
             {
+
                 item.Book = iBook.GetBookById(item.BookId);
                 dgvBorrowings.Rows.Add(item.BorrowingId, item.BookId, item.Book.Title, item.BorrowDate.ToString("MM-dd-yyyy"), item.DueDate.ToString("MM-dd-yyyy"));
             }
+            for (int i = 0; i < dgvBorrowings.Rows.Count - 1; i++)
+            {
+                DateTime due = DateTime.Parse(dgvBorrowings.Rows[i].Cells["Column5"].Value.ToString());
+                DateTime today = DateTime.Today;
+                int range = (due.Date - today.Date).Days;
+                // Kiểm tra điều kiện cho hàng hiện tại
+                if (range < 0)
+                {
+                    // Làm nổi bật hàng
+                    dgvBorrowings.Rows[i].DefaultCellStyle.BackColor = Color.Red;
+                }
+                else if (range <= 3)
+                {
+                    // Làm nổi bật hàng
+                    dgvBorrowings.Rows[i].DefaultCellStyle.BackColor = Color.Yellow;
+                }
+            }
+        }
+
+        private void refreshDGV()
+        {
+            borrowingList = iBorrowing.getBorrowingsByAccountID(currentAccount.AccountId);
+            displayDGV(borrowingList);
         }
 
         private void MyBorrowings_Load(object sender, EventArgs e)
@@ -81,6 +106,7 @@ namespace PRN211_Project_LibraryManagement
 
                         // Gán hình ảnh cho BackgroundImage của PictureBox
                         pictureBox_CoverPic.BackgroundImage = image;
+                        lblBorrowID.Text = dgvBorrowings.Rows[e.RowIndex].Cells["Column1"].Value.ToString();
                         lblId.Text = book.BookId.ToString();
                         lblTitle.Text = book.Title.ToString();
                         lblAuthor.Text = book.Author.ToString();
@@ -129,6 +155,46 @@ namespace PRN211_Project_LibraryManagement
             List<Borrowing> result = iBorrowing.getBorrowingsByBorrowDate(borrowingList, DateTime.Parse(borrowDate));
             displayDGV(result);
         }
+
+        private void btnReturn_Click(object sender, EventArgs e)
+        {
+            DateTime due = DateTime.Parse(lblDueDate.Text);
+            DateTime today = DateTime.Today;
+            int range = (due.Date - today.Date).Days;
+            bool check = true;
+            // Kiểm tra thoi gian nop
+            if (range < 0)
+            {
+                // Nop tre
+                check = false;
+            }
+            int bookId = int.Parse(lblId.Text);
+            int borrowId = int.Parse(lblBorrowID.Text);
+            Book returnBook = iBook.GetBookById(bookId);
+            DialogResult result
+                = MessageBox.Show($"Do you want to return the book: {returnBook.Title}!" +
+                $"\nAfter press \"Yes\", you will return this book!", "Return information"
+                , MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                Borrowing returnBr = iBorrowing.GetBorrowingById(borrowId);
+                returnBr.StatusId = 2;
+                iBorrowing.UpdateBorrowing(returnBr);
+                returnBook.Quantity += 1;
+                iBook.UpdateBook(returnBook);
+                refreshDGV();
+                if (check)
+                {
+                    MessageBox.Show("RETURN SUCCESSFULLY!", "SUCCESSFUL");
+                }
+                else
+                {
+                    MessageBox.Show("RETURN SUCCESSFULLY!\nPLEASE REMEMBER TO RETURN ON TIME NEXT TIME!", "SUCCESSFUL");
+                }
+            }
+
+        }
+
     }
 }
 

@@ -11,10 +11,10 @@ namespace PRN211_Project_LibraryManagement.Models
         }
 
         public int BookId { get; set; }
-        public int? Quantity { get; set; }
+        public int Quantity { get; set; }
         public string Title { get; set; } = null!;
         public string Author { get; set; } = null!;
-        public string? CoverPictureUrl { get; set; }
+        public string CoverPictureUrl { get; set; }
         public int CategoryId { get; set; }
         public string Description { get; set; } = null!;
 

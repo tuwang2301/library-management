@@ -39,7 +39,7 @@ namespace PRN211_Project_LibraryManagement
             lblFullname.Text = uP.FullName;
             lblEmail.Text = uP.Email;
             lblAge.Text = uP.Age.ToString();
-            lblGender.Text = (uP.Gender) ? "Male" : "Female";
+            lblGender.Text = (uP.Gender.Value) ? "Male" : "Female";
             lblAddress.Text = uP.Address;
 
             //Book
