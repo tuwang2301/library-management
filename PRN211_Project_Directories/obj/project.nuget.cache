@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "6J4DHj54j694/DChtB9QFdwOz3szVMRlzC7+coFxXxa2qXCjEtfw62soZRfB3VsnBBpwh8eC+Jglshb66ziZpw==",
+  "dgSpecHash": "uK22DFiguf4D0DDKlvCxu/oWvb2rvI6uKYmaddF93BIxQ1tsKKJNul9XFJUk1R7mcKRGI7jMyvKY6PW7ubGmtA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\quang\\Documents\\FPT\\Summer2023\\PRN211\\PRN211_Project_Directories\\PRN211_Project_LibraryManagement.csproj",
+  "projectFilePath": "C:\\Users\\quang\\Documents\\FPT\\Summer2023\\PRN211\\Library_Management\\library-management\\PRN211_Project_Directories\\PRN211_Project_LibraryManagement.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\quang\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\quang\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
