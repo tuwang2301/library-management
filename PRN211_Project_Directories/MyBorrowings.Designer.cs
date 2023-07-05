@@ -44,6 +44,8 @@
             label5 = new Label();
             label9 = new Label();
             panel1 = new Panel();
+            lblBorrowID = new Label();
+            label12 = new Label();
             groupBox_BookInfo = new GroupBox();
             lblDueDate = new Label();
             lbl = new Label();
@@ -84,7 +86,7 @@
             // 
             lblId.AutoSize = true;
             lblId.Font = new Font("Cambria", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            lblId.Location = new Point(83, 97);
+            lblId.Location = new Point(134, 97);
             lblId.Margin = new Padding(5, 0, 5, 0);
             lblId.Name = "lblId";
             lblId.Size = new Size(29, 23);
@@ -97,9 +99,9 @@
             label8.Location = new Point(32, 97);
             label8.Margin = new Padding(5, 0, 5, 0);
             label8.Name = "label8";
-            label8.Size = new Size(41, 23);
+            label8.Size = new Size(92, 23);
             label8.TabIndex = 11;
-            label8.Text = "ID: ";
+            label8.Text = "Book ID: ";
             // 
             // lblQuantity
             // 
@@ -209,6 +211,8 @@
             // 
             // panel1
             // 
+            panel1.Controls.Add(lblBorrowID);
+            panel1.Controls.Add(label12);
             panel1.Controls.Add(lblId);
             panel1.Controls.Add(label8);
             panel1.Controls.Add(lblQuantity);
@@ -225,6 +229,27 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(423, 600);
             panel1.TabIndex = 10;
+            // 
+            // lblBorrowID
+            // 
+            lblBorrowID.AutoSize = true;
+            lblBorrowID.Font = new Font("Cambria", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            lblBorrowID.Location = new Point(361, 97);
+            lblBorrowID.Margin = new Padding(5, 0, 5, 0);
+            lblBorrowID.Name = "lblBorrowID";
+            lblBorrowID.Size = new Size(29, 23);
+            lblBorrowID.TabIndex = 14;
+            lblBorrowID.Text = "ID";
+            // 
+            // label12
+            // 
+            label12.AutoSize = true;
+            label12.Location = new Point(237, 97);
+            label12.Margin = new Padding(5, 0, 5, 0);
+            label12.Name = "label12";
+            label12.Size = new Size(114, 23);
+            label12.TabIndex = 13;
+            label12.Text = "Borrow ID: ";
             // 
             // groupBox_BookInfo
             // 
@@ -270,6 +295,7 @@
             // 
             // btnReturn
             // 
+            btnReturn.Cursor = Cursors.Hand;
             btnReturn.Location = new Point(76, 591);
             btnReturn.Margin = new Padding(5, 3, 5, 3);
             btnReturn.Name = "btnReturn";
@@ -277,9 +303,11 @@
             btnReturn.TabIndex = 9;
             btnReturn.Text = "Return this book";
             btnReturn.UseVisualStyleBackColor = true;
+            btnReturn.Click += btnReturn_Click;
             // 
             // btnSearch
             // 
+            btnSearch.Cursor = Cursors.Hand;
             btnSearch.Location = new Point(426, 193);
             btnSearch.Margin = new Padding(5, 3, 5, 3);
             btnSearch.Name = "btnSearch";
@@ -331,6 +359,7 @@
             dgvBorrowings.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgvBorrowings.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvBorrowings.Columns.AddRange(new DataGridViewColumn[] { Column1, Column2, Column3, Column4, Column5 });
+            dgvBorrowings.Cursor = Cursors.Hand;
             dgvBorrowings.Location = new Point(112, 245);
             dgvBorrowings.Margin = new Padding(5, 3, 5, 3);
             dgvBorrowings.Name = "dgvBorrowings";
@@ -412,6 +441,7 @@
             // 
             pictureBox2.BackgroundImage = (Image)resources.GetObject("pictureBox2.BackgroundImage");
             pictureBox2.BackgroundImageLayout = ImageLayout.Stretch;
+            pictureBox2.Cursor = Cursors.Hand;
             pictureBox2.Location = new Point(1780, 30);
             pictureBox2.Margin = new Padding(4, 3, 4, 3);
             pictureBox2.Name = "pictureBox2";
@@ -421,6 +451,7 @@
             // 
             // dateTimePickerBorrowDate
             // 
+            dateTimePickerBorrowDate.Cursor = Cursors.Hand;
             dateTimePickerBorrowDate.Format = DateTimePickerFormat.Short;
             dateTimePickerBorrowDate.Location = new Point(564, 193);
             dateTimePickerBorrowDate.Name = "dateTimePickerBorrowDate";
@@ -430,6 +461,7 @@
             // 
             // dateTimePickerDueDate
             // 
+            dateTimePickerDueDate.Cursor = Cursors.Hand;
             dateTimePickerDueDate.Format = DateTimePickerFormat.Short;
             dateTimePickerDueDate.Location = new Point(802, 193);
             dateTimePickerDueDate.Name = "dateTimePickerDueDate";
@@ -505,5 +537,7 @@
         private Label lblDueDate;
         private DateTimePicker dateTimePickerBorrowDate;
         private DateTimePicker dateTimePickerDueDate;
+        private Label lblBorrowID;
+        private Label label12;
     }
 }

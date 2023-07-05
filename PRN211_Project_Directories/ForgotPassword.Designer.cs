@@ -29,24 +29,26 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ForgotPassword));
-            btnLogin = new Button();
+            btnGetPassword = new Button();
             pictureBox1 = new PictureBox();
             label2 = new Label();
             label3 = new Label();
             txtEmail = new TextBox();
-            textBox1 = new TextBox();
+            txtResult = new TextBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
-            // btnLogin
+            // btnGetPassword
             // 
-            btnLogin.Font = new Font("Cambria", 10.8F, FontStyle.Bold, GraphicsUnit.Point);
-            btnLogin.Location = new Point(204, 409);
-            btnLogin.Name = "btnLogin";
-            btnLogin.Size = new Size(169, 29);
-            btnLogin.TabIndex = 17;
-            btnLogin.Text = "Get password";
-            btnLogin.UseVisualStyleBackColor = true;
+            btnGetPassword.Cursor = Cursors.Hand;
+            btnGetPassword.Font = new Font("Cambria", 10.8F, FontStyle.Bold, GraphicsUnit.Point);
+            btnGetPassword.Location = new Point(204, 409);
+            btnGetPassword.Name = "btnGetPassword";
+            btnGetPassword.Size = new Size(169, 29);
+            btnGetPassword.TabIndex = 17;
+            btnGetPassword.Text = "Get password";
+            btnGetPassword.UseVisualStyleBackColor = true;
+            btnGetPassword.Click += btnGetPassword_Click;
             // 
             // pictureBox1
             // 
@@ -85,21 +87,22 @@
             txtEmail.Size = new Size(298, 27);
             txtEmail.TabIndex = 13;
             // 
-            // textBox1
+            // txtResult
             // 
-            textBox1.Location = new Point(204, 347);
-            textBox1.Name = "textBox1";
-            textBox1.ReadOnly = true;
-            textBox1.Size = new Size(298, 27);
-            textBox1.TabIndex = 18;
+            txtResult.Location = new Point(204, 347);
+            txtResult.Name = "txtResult";
+            txtResult.ReadOnly = true;
+            txtResult.Size = new Size(298, 27);
+            txtResult.TabIndex = 18;
             // 
             // ForgotPassword
             // 
+            AcceptButton = btnGetPassword;
             AutoScaleDimensions = new SizeF(9F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(579, 484);
-            Controls.Add(textBox1);
-            Controls.Add(btnLogin);
+            Controls.Add(txtResult);
+            Controls.Add(btnGetPassword);
             Controls.Add(txtEmail);
             Controls.Add(label3);
             Controls.Add(label2);
@@ -114,11 +117,11 @@
 
         #endregion
 
-        private Button btnLogin;
+        private Button btnGetPassword;
         private PictureBox pictureBox1;
         private Label label2;
         private Label label3;
         private TextBox txtEmail;
-        private TextBox textBox1;
+        private TextBox txtResult;
     }
 }

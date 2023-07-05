@@ -104,6 +104,7 @@
             // linkLabel_Forgot
             // 
             linkLabel_Forgot.AutoSize = true;
+            linkLabel_Forgot.Cursor = Cursors.Hand;
             linkLabel_Forgot.Font = new Font("Cambria", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
             linkLabel_Forgot.LinkColor = Color.FromArgb(128, 64, 0);
             linkLabel_Forgot.Location = new Point(87, 456);
@@ -117,6 +118,7 @@
             // linkLabel_Register
             // 
             linkLabel_Register.AutoSize = true;
+            linkLabel_Register.Cursor = Cursors.Hand;
             linkLabel_Register.Font = new Font("Cambria", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
             linkLabel_Register.LinkColor = Color.FromArgb(128, 64, 0);
             linkLabel_Register.Location = new Point(390, 456);

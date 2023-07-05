@@ -34,6 +34,8 @@ namespace PRN211_Project_LibraryManagement.Repository
         public List<Borrowing> getBorrowingsByBorrowDate(List<Borrowing> borrowings, DateTime borrowDate);
         public List<Borrowing> getBorrowingsByDueDate(List<Borrowing> borrowings, DateTime dueDate);
 
+        public int GetLastID();
+
         public void AddBorrowing(Borrowing borrowing);
 
         public void UpdateBorrowing(Borrowing borrowing);

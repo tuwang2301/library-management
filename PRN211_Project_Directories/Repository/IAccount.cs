@@ -22,6 +22,11 @@ namespace PRN211_Project_LibraryManagement.Repository
         /// <param name="password"></param>
         /// <returns></returns>
         public Account GetAccount(string username, string password);
+        public Account GetAccountByUsername(string username);
+
+        public Account GetAccountById(int id);
+
+        public int GetLastID();
 
         public void AddAccount(Account account);
 

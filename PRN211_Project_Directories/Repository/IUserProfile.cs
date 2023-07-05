@@ -22,6 +22,9 @@ namespace PRN211_Project_LibraryManagement.Repository
         /// <param name="password"></param>
         /// <returns></returns>
         public UserProfile GetUserProfile(int accountId);
+        public UserProfile GetUserProfileByEmail(string email);
+
+        public int GetLastID();
 
         public void AddUserProfile(UserProfile userProfile);
 

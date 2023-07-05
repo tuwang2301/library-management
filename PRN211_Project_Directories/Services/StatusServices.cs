@@ -38,6 +38,19 @@ namespace PRN211_Project_LibraryManagement.Services
             return list;
         }
 
+        public int GetLastID()
+        {
+            using (var con = new LibraryManagementContext())
+            {
+                var last = con.Statuses.OrderByDescending(a => a.StatusId).FirstOrDefault();
+                if (last != null)
+                {
+                    return last.StatusId;
+                }
+                return 0; // hoặc giá trị mặc định khác tùy vào yêu cầu của bạn
+            }
+        }
+
         public Status GetStatus(int statusId)
         {
             Status status = new Status();

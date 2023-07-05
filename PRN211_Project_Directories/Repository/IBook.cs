@@ -27,6 +27,8 @@ namespace PRN211_Project_LibraryManagement.Repository
 
         public List<Book> getBooksByCategory(int catId);
 
+        public int GetLastID();
+
         public void AddBook(Book book);
 
         public void UpdateBook(Book book);

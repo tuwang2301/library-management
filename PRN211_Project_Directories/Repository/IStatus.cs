@@ -23,6 +23,8 @@ namespace PRN211_Project_LibraryManagement.Repository
         /// <returns></returns>
         public Status GetStatus(int statusId);
 
+        public int GetLastID();
+
         public void AddStatus(Status status);
 
         public void UpdateStatus(Status status);
