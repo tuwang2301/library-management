@@ -186,6 +186,7 @@
             pictureBox1.Size = new Size(78, 71);
             pictureBox1.TabIndex = 3;
             pictureBox1.TabStop = false;
+            pictureBox1.Click += pictureBox1_Click;
             // 
             // linkLabel_myBorrowings
             // 

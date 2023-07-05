@@ -16,6 +16,9 @@
     <Compile Update="MyBorrowings.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="MyProfile.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Signup.cs">
       <SubType>Form</SubType>
     </Compile>

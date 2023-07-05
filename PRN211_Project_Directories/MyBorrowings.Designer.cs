@@ -448,6 +448,7 @@
             pictureBox2.Size = new Size(78, 71);
             pictureBox2.TabIndex = 26;
             pictureBox2.TabStop = false;
+            pictureBox2.Click += pictureBox2_Click;
             // 
             // dateTimePickerBorrowDate
             // 
