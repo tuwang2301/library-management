@@ -242,6 +242,7 @@
             Font = new Font("Cambria", 12F, FontStyle.Regular, GraphicsUnit.Point);
             Margin = new Padding(4, 3, 4, 3);
             Name = "MyProfile";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "MyProfile";
             Load += MyProfile_Load;
             groupBox1.ResumeLayout(false);

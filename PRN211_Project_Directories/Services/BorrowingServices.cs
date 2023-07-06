@@ -132,5 +132,16 @@ namespace PRN211_Project_LibraryManagement.Services
                 return 0; // hoặc giá trị mặc định khác tùy vào yêu cầu của bạn
             }
         }
+
+        public Borrowing getBorrowingByAccountBookID(int accountId, int bookId)
+        {
+            Borrowing borrowings = new Borrowing();
+            using (var con = new LibraryManagementContext())
+            {
+                borrowings = con.Borrowings.Where((x) => x.AccountId == accountId && x.BookId == bookId).FirstOrDefault();
+            }
+
+            return borrowings;
+        }
     }
 }

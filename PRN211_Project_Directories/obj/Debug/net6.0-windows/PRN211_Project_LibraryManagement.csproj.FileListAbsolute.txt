@@ -127,3 +127,4 @@ C:\Users\quang\Documents\FPT\Summer2023\PRN211\Library_Management\library-manage
 C:\Users\quang\Documents\FPT\Summer2023\PRN211\Library_Management\library-management\PRN211_Project_Directories\obj\Debug\net6.0-windows\PRN211_Project_LibraryManagement.genruntimeconfig.cache
 C:\Users\quang\Documents\FPT\Summer2023\PRN211\Library_Management\library-management\PRN211_Project_Directories\obj\Debug\net6.0-windows\ref\PRN211_Project_LibraryManagement.dll
 C:\Users\quang\Documents\FPT\Summer2023\PRN211\Library_Management\library-management\PRN211_Project_Directories\obj\Debug\net6.0-windows\PRN211_Project_LibraryManagement.MyProfile.resources
+C:\Users\quang\Documents\FPT\Summer2023\PRN211\Library_Management\library-management\PRN211_Project_Directories\obj\Debug\net6.0-windows\PRN211_Project_LibraryManagement.AdminHome.resources

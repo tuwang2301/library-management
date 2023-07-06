@@ -100,7 +100,7 @@ namespace PRN211_Project_LibraryManagement
             edit.FullName = txtFullName.Text;
             edit.Email = txtEmail.Text;
             edit.Address = txtAddress.Text;
-            edit.Age = (int) numericUpDown_Age.Value;
+            edit.Age = (int)numericUpDown_Age.Value;
             edit.Gender = (radioButton_Female.Checked) ? false : true;
             iU.UpdateUserProfile(edit);
             MessageBox.Show("New information saved successfully!", "Edit successfully");
