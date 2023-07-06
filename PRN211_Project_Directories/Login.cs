@@ -14,10 +14,15 @@ namespace PRN211_Project_LibraryManagement
             InitializeComponent();
         }
 
-        public void loginThread(object obj)
+        public void loginThread1(object obj)
         {
             Account account = (Account)obj;
             Application.Run(new Home(account));
+        }
+        public void loginThread2(object obj)
+        {
+            Account account = (Account)obj;
+            Application.Run(new AdminHome(account));
         }
 
         private void linkLabel_Forgot_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -40,10 +45,29 @@ namespace PRN211_Project_LibraryManagement
             Account login = aS.GetAccount(username, password);
             if (login != null)
             {
-                this.Close();
-                th = new Thread(loginThread);
-                th.SetApartmentState(ApartmentState.STA);
-                th.Start(login);
+                if (!login.Status)
+                {
+                    DialogResult check = MessageBox.Show("You have been blocked by admin! See you soon!"
+                       , "BLOCK", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                }
+                else
+                {
+                    if (login.RoleName.Trim().Equals("user"))
+                    {
+                        this.Close();
+                        th = new Thread(loginThread1);
+                        th.SetApartmentState(ApartmentState.STA);
+                        th.Start(login);
+                    }
+                    else
+                    {
+                        this.Close();
+                        th = new Thread(loginThread2);
+                        th.SetApartmentState(ApartmentState.STA);
+                        th.Start(login);
+                    }
+
+                }
 
             }
             else

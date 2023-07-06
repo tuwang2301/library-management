@@ -23,6 +23,8 @@ namespace PRN211_Project_LibraryManagement.Repository
         /// <returns></returns>
         public Category GetCategoryById(int id);
 
+        public Category GetCategoryByName(string name);
+
         public int GetLastID();
 
         public void AddCategory(Category category);

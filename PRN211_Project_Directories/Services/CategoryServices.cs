@@ -48,6 +48,16 @@ namespace PRN211_Project_LibraryManagement.Services
             return category;
         }
 
+        public Category GetCategoryByName(string name)
+        {
+            Category category = new Category();
+            using (var con = new LibraryManagementContext())
+            {
+                category = con.Categories.Where((x) => x.CategoryName.ToLower().Equals(name.ToLower())).FirstOrDefault();
+            }
+            return category;
+        }
+
         public int GetLastID()
         {
             using (var con = new LibraryManagementContext())

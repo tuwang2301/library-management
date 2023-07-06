@@ -46,7 +46,7 @@ namespace PRN211_Project_LibraryManagement
             borrowBook.Category = iC.GetCategoryById(borrowBook.CategoryId);
             try
             {
-                string coverUrl = $"C:\\Users\\quang\\Documents\\FPT\\Summer2023\\PRN211\\Library_Management\\library-management\\PRN211_Project_Directories\\img\\{borrowBook.CoverPictureUrl}.jpg";
+                string coverUrl = $"C:\\Users\\quang\\Documents\\FPT\\Summer2023\\PRN211\\Library_Management\\library-management\\PRN211_Project_Directories\\img\\{borrowBook.CoverPictureUrl}";
                 // Kiểm tra xem tập tin ảnh có tồn tại không
                 if (System.IO.File.Exists(coverUrl))
                 {

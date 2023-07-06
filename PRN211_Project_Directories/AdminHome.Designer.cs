@@ -69,6 +69,10 @@
             BookColumn5 = new DataGridViewTextBoxColumn();
             BookColumn6 = new DataGridViewTextBoxColumn();
             tabPage_BorrowList = new TabPage();
+            dateTimePickerDueDate = new DateTimePicker();
+            dateTimePickerBorrowDate = new DateTimePicker();
+            label14 = new Label();
+            label17 = new Label();
             dgvUserProfile2 = new DataGridView();
             dgvUserProfile2Column1 = new DataGridViewTextBoxColumn();
             dgvUserProfile2Column2 = new DataGridViewTextBoxColumn();
@@ -108,9 +112,6 @@
             buttonBorrowAdd = new Button();
             buttonBorrowUpdate = new Button();
             buttonBorrowDelete = new Button();
-            button5 = new Button();
-            textBox5 = new TextBox();
-            label17 = new Label();
             dgvBorrowings = new DataGridView();
             BorrowColumn1 = new DataGridViewTextBoxColumn();
             BorrowColumn2 = new DataGridViewTextBoxColumn();
@@ -120,7 +121,39 @@
             BorrowColumn6 = new DataGridViewTextBoxColumn();
             BorrowColumn7 = new DataGridViewTextBoxColumn();
             tabPage_Acc_Pro = new TabPage();
-            tabPage_Other = new TabPage();
+            groupBox6 = new GroupBox();
+            groupBox8 = new GroupBox();
+            buttonOtherAddCat = new Button();
+            buttonOtherUpdCat = new Button();
+            buttonOtherDelCat = new Button();
+            txtOther_CategoryName = new TextBox();
+            lblOther_CatID = new Label();
+            label28 = new Label();
+            label27 = new Label();
+            dgvOther_Category = new DataGridView();
+            CategoryColumn1 = new DataGridViewTextBoxColumn();
+            CategoryColumn2 = new DataGridViewTextBoxColumn();
+            groupBox5 = new GroupBox();
+            groupBox7 = new GroupBox();
+            lblOtherAccountID = new Label();
+            buttonOtherAddAccount = new Button();
+            buttonOtherUpdateAccount = new Button();
+            buttonOtherDeleteAccount = new Button();
+            radioButton_Other_Disable = new RadioButton();
+            radioButton_Other_Enable = new RadioButton();
+            comboBoxOther_roleName = new ComboBox();
+            txtOtherPassword = new TextBox();
+            txtOther_UserName = new TextBox();
+            label24 = new Label();
+            label23 = new Label();
+            label22 = new Label();
+            label21 = new Label();
+            label19 = new Label();
+            dgvOther_Account = new DataGridView();
+            AccountColumn1 = new DataGridViewTextBoxColumn();
+            AccountColumn2 = new DataGridViewTextBoxColumn();
+            AccountColumn3 = new DataGridViewTextBoxColumn();
+            AccountColumn4 = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             tabControl1.SuspendLayout();
             tabPage_BookList.SuspendLayout();
@@ -137,6 +170,13 @@
             groupBox3.SuspendLayout();
             groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvBorrowings).BeginInit();
+            tabPage_Acc_Pro.SuspendLayout();
+            groupBox6.SuspendLayout();
+            groupBox8.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvOther_Category).BeginInit();
+            groupBox5.SuspendLayout();
+            groupBox7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvOther_Account).BeginInit();
             SuspendLayout();
             // 
             // pictureBox1
@@ -150,11 +190,11 @@
             pictureBox1.Size = new Size(78, 71);
             pictureBox1.TabIndex = 7;
             pictureBox1.TabStop = false;
+            pictureBox1.Click += pictureBox1_Click;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Cursor = Cursors.Hand;
             label1.Font = new Font("Cambria", 24F, FontStyle.Bold, GraphicsUnit.Point);
             label1.Location = new Point(80, 37);
             label1.Margin = new Padding(4, 0, 4, 0);
@@ -181,7 +221,6 @@
             tabControl1.Controls.Add(tabPage_BookList);
             tabControl1.Controls.Add(tabPage_BorrowList);
             tabControl1.Controls.Add(tabPage_Acc_Pro);
-            tabControl1.Controls.Add(tabPage_Other);
             tabControl1.Font = new Font("Cambria", 12F, FontStyle.Regular, GraphicsUnit.Point);
             tabControl1.Location = new Point(80, 138);
             tabControl1.Name = "tabControl1";
@@ -570,12 +609,13 @@
             // 
             // tabPage_BorrowList
             // 
+            tabPage_BorrowList.Controls.Add(dateTimePickerDueDate);
+            tabPage_BorrowList.Controls.Add(dateTimePickerBorrowDate);
+            tabPage_BorrowList.Controls.Add(label14);
+            tabPage_BorrowList.Controls.Add(label17);
             tabPage_BorrowList.Controls.Add(dgvUserProfile2);
             tabPage_BorrowList.Controls.Add(dgvBook2);
             tabPage_BorrowList.Controls.Add(groupBox1);
-            tabPage_BorrowList.Controls.Add(button5);
-            tabPage_BorrowList.Controls.Add(textBox5);
-            tabPage_BorrowList.Controls.Add(label17);
             tabPage_BorrowList.Controls.Add(dgvBorrowings);
             tabPage_BorrowList.Location = new Point(4, 32);
             tabPage_BorrowList.Name = "tabPage_BorrowList";
@@ -585,6 +625,46 @@
             tabPage_BorrowList.Text = "  Borrow List  ";
             tabPage_BorrowList.UseVisualStyleBackColor = true;
             tabPage_BorrowList.Click += tabPage_BorrowList_Click;
+            // 
+            // dateTimePickerDueDate
+            // 
+            dateTimePickerDueDate.Cursor = Cursors.Hand;
+            dateTimePickerDueDate.Format = DateTimePickerFormat.Short;
+            dateTimePickerDueDate.Location = new Point(1384, 27);
+            dateTimePickerDueDate.Name = "dateTimePickerDueDate";
+            dateTimePickerDueDate.Size = new Size(191, 31);
+            dateTimePickerDueDate.TabIndex = 32;
+            dateTimePickerDueDate.ValueChanged += dateTimePickerDueDate_ValueChanged;
+            // 
+            // dateTimePickerBorrowDate
+            // 
+            dateTimePickerBorrowDate.Cursor = Cursors.Hand;
+            dateTimePickerBorrowDate.Format = DateTimePickerFormat.Short;
+            dateTimePickerBorrowDate.Location = new Point(1050, 30);
+            dateTimePickerBorrowDate.Name = "dateTimePickerBorrowDate";
+            dateTimePickerBorrowDate.Size = new Size(193, 31);
+            dateTimePickerBorrowDate.TabIndex = 31;
+            dateTimePickerBorrowDate.ValueChanged += dateTimePickerBorrowDate_ValueChanged;
+            // 
+            // label14
+            // 
+            label14.AutoSize = true;
+            label14.Location = new Point(1288, 33);
+            label14.Margin = new Padding(5, 0, 5, 0);
+            label14.Name = "label14";
+            label14.Size = new Size(88, 23);
+            label14.TabIndex = 30;
+            label14.Text = "Due Date";
+            // 
+            // label17
+            // 
+            label17.AutoSize = true;
+            label17.Location = new Point(923, 35);
+            label17.Margin = new Padding(5, 0, 5, 0);
+            label17.Name = "label17";
+            label17.Size = new Size(119, 23);
+            label17.TabIndex = 29;
+            label17.Text = "Borrow Date";
             // 
             // dgvUserProfile2
             // 
@@ -1030,36 +1110,6 @@
             buttonBorrowDelete.UseVisualStyleBackColor = false;
             buttonBorrowDelete.Click += buttonBorrowDelete_Click;
             // 
-            // button5
-            // 
-            button5.Font = new Font("Cambria", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            button5.Location = new Point(1161, 20);
-            button5.Margin = new Padding(4, 3, 4, 3);
-            button5.Name = "button5";
-            button5.Size = new Size(115, 31);
-            button5.TabIndex = 23;
-            button5.Text = "Search";
-            button5.UseVisualStyleBackColor = true;
-            // 
-            // textBox5
-            // 
-            textBox5.Location = new Point(907, 20);
-            textBox5.Margin = new Padding(4, 3, 4, 3);
-            textBox5.Name = "textBox5";
-            textBox5.Size = new Size(246, 31);
-            textBox5.TabIndex = 20;
-            // 
-            // label17
-            // 
-            label17.AutoSize = true;
-            label17.Font = new Font("Cambria", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label17.Location = new Point(831, 26);
-            label17.Margin = new Padding(4, 0, 4, 0);
-            label17.Name = "label17";
-            label17.Size = new Size(68, 23);
-            label17.TabIndex = 19;
-            label17.Text = "Search";
-            // 
             // dgvBorrowings
             // 
             dgvBorrowings.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
@@ -1156,23 +1206,378 @@
             // 
             // tabPage_Acc_Pro
             // 
+            tabPage_Acc_Pro.Controls.Add(groupBox6);
+            tabPage_Acc_Pro.Controls.Add(groupBox5);
             tabPage_Acc_Pro.Location = new Point(4, 32);
             tabPage_Acc_Pro.Name = "tabPage_Acc_Pro";
             tabPage_Acc_Pro.Padding = new Padding(3);
             tabPage_Acc_Pro.Size = new Size(1738, 780);
             tabPage_Acc_Pro.TabIndex = 2;
-            tabPage_Acc_Pro.Text = "  Account & User Profile List  ";
+            tabPage_Acc_Pro.Text = "  Other";
             tabPage_Acc_Pro.UseVisualStyleBackColor = true;
             // 
-            // tabPage_Other
+            // groupBox6
             // 
-            tabPage_Other.Location = new Point(4, 32);
-            tabPage_Other.Name = "tabPage_Other";
-            tabPage_Other.Padding = new Padding(3);
-            tabPage_Other.Size = new Size(1738, 780);
-            tabPage_Other.TabIndex = 3;
-            tabPage_Other.Text = "  Other";
-            tabPage_Other.UseVisualStyleBackColor = true;
+            groupBox6.Controls.Add(groupBox8);
+            groupBox6.Controls.Add(dgvOther_Category);
+            groupBox6.Location = new Point(939, 6);
+            groupBox6.Name = "groupBox6";
+            groupBox6.Size = new Size(770, 758);
+            groupBox6.TabIndex = 28;
+            groupBox6.TabStop = false;
+            groupBox6.Text = "Category List";
+            // 
+            // groupBox8
+            // 
+            groupBox8.Controls.Add(buttonOtherAddCat);
+            groupBox8.Controls.Add(buttonOtherUpdCat);
+            groupBox8.Controls.Add(buttonOtherDelCat);
+            groupBox8.Controls.Add(txtOther_CategoryName);
+            groupBox8.Controls.Add(lblOther_CatID);
+            groupBox8.Controls.Add(label28);
+            groupBox8.Controls.Add(label27);
+            groupBox8.Location = new Point(429, 205);
+            groupBox8.Name = "groupBox8";
+            groupBox8.Size = new Size(335, 260);
+            groupBox8.TabIndex = 41;
+            groupBox8.TabStop = false;
+            groupBox8.Text = "Category Information";
+            // 
+            // buttonOtherAddCat
+            // 
+            buttonOtherAddCat.BackColor = Color.LightGreen;
+            buttonOtherAddCat.Cursor = Cursors.Hand;
+            buttonOtherAddCat.Location = new Point(10, 196);
+            buttonOtherAddCat.Margin = new Padding(4, 3, 4, 3);
+            buttonOtherAddCat.Name = "buttonOtherAddCat";
+            buttonOtherAddCat.Size = new Size(93, 40);
+            buttonOtherAddCat.TabIndex = 43;
+            buttonOtherAddCat.Text = "Add";
+            buttonOtherAddCat.UseVisualStyleBackColor = false;
+            buttonOtherAddCat.Click += buttonOtherAddCat_Click;
+            // 
+            // buttonOtherUpdCat
+            // 
+            buttonOtherUpdCat.BackColor = Color.LightGoldenrodYellow;
+            buttonOtherUpdCat.Cursor = Cursors.Hand;
+            buttonOtherUpdCat.Location = new Point(111, 196);
+            buttonOtherUpdCat.Margin = new Padding(4, 3, 4, 3);
+            buttonOtherUpdCat.Name = "buttonOtherUpdCat";
+            buttonOtherUpdCat.Size = new Size(103, 40);
+            buttonOtherUpdCat.TabIndex = 42;
+            buttonOtherUpdCat.Text = "Update";
+            buttonOtherUpdCat.UseVisualStyleBackColor = false;
+            buttonOtherUpdCat.Click += buttonOtherUpdCat_Click;
+            // 
+            // buttonOtherDelCat
+            // 
+            buttonOtherDelCat.BackColor = Color.LightPink;
+            buttonOtherDelCat.Cursor = Cursors.Hand;
+            buttonOtherDelCat.Location = new Point(222, 196);
+            buttonOtherDelCat.Margin = new Padding(4, 3, 4, 3);
+            buttonOtherDelCat.Name = "buttonOtherDelCat";
+            buttonOtherDelCat.Size = new Size(106, 40);
+            buttonOtherDelCat.TabIndex = 41;
+            buttonOtherDelCat.Text = "Delete";
+            buttonOtherDelCat.UseVisualStyleBackColor = false;
+            buttonOtherDelCat.Click += buttonOtherDelCat_Click;
+            // 
+            // txtOther_CategoryName
+            // 
+            txtOther_CategoryName.Location = new Point(10, 114);
+            txtOther_CategoryName.Multiline = true;
+            txtOther_CategoryName.Name = "txtOther_CategoryName";
+            txtOther_CategoryName.Size = new Size(318, 60);
+            txtOther_CategoryName.TabIndex = 39;
+            // 
+            // lblOther_CatID
+            // 
+            lblOther_CatID.AutoSize = true;
+            lblOther_CatID.Font = new Font("Cambria", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            lblOther_CatID.Location = new Point(54, 42);
+            lblOther_CatID.Name = "lblOther_CatID";
+            lblOther_CatID.Size = new Size(0, 23);
+            lblOther_CatID.TabIndex = 40;
+            // 
+            // label28
+            // 
+            label28.AutoSize = true;
+            label28.Location = new Point(10, 42);
+            label28.Name = "label28";
+            label28.Size = new Size(38, 23);
+            label28.TabIndex = 38;
+            label28.Text = "ID: ";
+            // 
+            // label27
+            // 
+            label27.AutoSize = true;
+            label27.Location = new Point(10, 79);
+            label27.Name = "label27";
+            label27.Size = new Size(66, 23);
+            label27.TabIndex = 37;
+            label27.Text = "Name:";
+            // 
+            // dgvOther_Category
+            // 
+            dgvOther_Category.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvOther_Category.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvOther_Category.Columns.AddRange(new DataGridViewColumn[] { CategoryColumn1, CategoryColumn2 });
+            dgvOther_Category.Cursor = Cursors.Hand;
+            dgvOther_Category.Location = new Point(18, 41);
+            dgvOther_Category.Margin = new Padding(4, 3, 4, 3);
+            dgvOther_Category.Name = "dgvOther_Category";
+            dgvOther_Category.ReadOnly = true;
+            dgvOther_Category.RowHeadersWidth = 51;
+            dgvOther_Category.RowTemplate.Height = 29;
+            dgvOther_Category.Size = new Size(381, 687);
+            dgvOther_Category.TabIndex = 26;
+            dgvOther_Category.CellContentClick += dgvOther_Category_CellContentClick;
+            // 
+            // CategoryColumn1
+            // 
+            CategoryColumn1.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+            CategoryColumn1.HeaderText = "ID";
+            CategoryColumn1.MinimumWidth = 6;
+            CategoryColumn1.Name = "CategoryColumn1";
+            CategoryColumn1.ReadOnly = true;
+            CategoryColumn1.Width = 50;
+            // 
+            // CategoryColumn2
+            // 
+            CategoryColumn2.HeaderText = "Category Name";
+            CategoryColumn2.MinimumWidth = 6;
+            CategoryColumn2.Name = "CategoryColumn2";
+            CategoryColumn2.ReadOnly = true;
+            // 
+            // groupBox5
+            // 
+            groupBox5.Controls.Add(groupBox7);
+            groupBox5.Controls.Add(dgvOther_Account);
+            groupBox5.Location = new Point(6, 6);
+            groupBox5.Name = "groupBox5";
+            groupBox5.Size = new Size(927, 758);
+            groupBox5.TabIndex = 27;
+            groupBox5.TabStop = false;
+            groupBox5.Text = "Account List";
+            // 
+            // groupBox7
+            // 
+            groupBox7.Controls.Add(lblOtherAccountID);
+            groupBox7.Controls.Add(buttonOtherAddAccount);
+            groupBox7.Controls.Add(buttonOtherUpdateAccount);
+            groupBox7.Controls.Add(buttonOtherDeleteAccount);
+            groupBox7.Controls.Add(radioButton_Other_Disable);
+            groupBox7.Controls.Add(radioButton_Other_Enable);
+            groupBox7.Controls.Add(comboBoxOther_roleName);
+            groupBox7.Controls.Add(txtOtherPassword);
+            groupBox7.Controls.Add(txtOther_UserName);
+            groupBox7.Controls.Add(label24);
+            groupBox7.Controls.Add(label23);
+            groupBox7.Controls.Add(label22);
+            groupBox7.Controls.Add(label21);
+            groupBox7.Controls.Add(label19);
+            groupBox7.Location = new Point(532, 161);
+            groupBox7.Name = "groupBox7";
+            groupBox7.Size = new Size(359, 332);
+            groupBox7.TabIndex = 28;
+            groupBox7.TabStop = false;
+            groupBox7.Text = "Account Information";
+            // 
+            // lblOtherAccountID
+            // 
+            lblOtherAccountID.AutoSize = true;
+            lblOtherAccountID.Font = new Font("Cambria", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            lblOtherAccountID.Location = new Point(136, 44);
+            lblOtherAccountID.Name = "lblOtherAccountID";
+            lblOtherAccountID.Size = new Size(0, 23);
+            lblOtherAccountID.TabIndex = 36;
+            // 
+            // buttonOtherAddAccount
+            // 
+            buttonOtherAddAccount.BackColor = Color.LightGreen;
+            buttonOtherAddAccount.Cursor = Cursors.Hand;
+            buttonOtherAddAccount.Location = new Point(21, 272);
+            buttonOtherAddAccount.Margin = new Padding(4, 3, 4, 3);
+            buttonOtherAddAccount.Name = "buttonOtherAddAccount";
+            buttonOtherAddAccount.Size = new Size(100, 40);
+            buttonOtherAddAccount.TabIndex = 35;
+            buttonOtherAddAccount.Text = "Add";
+            buttonOtherAddAccount.UseVisualStyleBackColor = false;
+            buttonOtherAddAccount.Click += buttonOtherAddAccount_Click;
+            // 
+            // buttonOtherUpdateAccount
+            // 
+            buttonOtherUpdateAccount.BackColor = Color.LightGoldenrodYellow;
+            buttonOtherUpdateAccount.Cursor = Cursors.Hand;
+            buttonOtherUpdateAccount.Location = new Point(129, 272);
+            buttonOtherUpdateAccount.Margin = new Padding(4, 3, 4, 3);
+            buttonOtherUpdateAccount.Name = "buttonOtherUpdateAccount";
+            buttonOtherUpdateAccount.Size = new Size(100, 40);
+            buttonOtherUpdateAccount.TabIndex = 34;
+            buttonOtherUpdateAccount.Text = "Update";
+            buttonOtherUpdateAccount.UseVisualStyleBackColor = false;
+            buttonOtherUpdateAccount.Click += buttonOtherUpdateAccount_Click;
+            // 
+            // buttonOtherDeleteAccount
+            // 
+            buttonOtherDeleteAccount.BackColor = Color.LightPink;
+            buttonOtherDeleteAccount.Cursor = Cursors.Hand;
+            buttonOtherDeleteAccount.Location = new Point(237, 272);
+            buttonOtherDeleteAccount.Margin = new Padding(4, 3, 4, 3);
+            buttonOtherDeleteAccount.Name = "buttonOtherDeleteAccount";
+            buttonOtherDeleteAccount.Size = new Size(100, 40);
+            buttonOtherDeleteAccount.TabIndex = 33;
+            buttonOtherDeleteAccount.Text = "Delete";
+            buttonOtherDeleteAccount.UseVisualStyleBackColor = false;
+            buttonOtherDeleteAccount.Click += buttonOtherDeleteAccount_Click;
+            // 
+            // radioButton_Other_Disable
+            // 
+            radioButton_Other_Disable.AutoSize = true;
+            radioButton_Other_Disable.Location = new Point(242, 217);
+            radioButton_Other_Disable.Name = "radioButton_Other_Disable";
+            radioButton_Other_Disable.Size = new Size(95, 27);
+            radioButton_Other_Disable.TabIndex = 32;
+            radioButton_Other_Disable.TabStop = true;
+            radioButton_Other_Disable.Text = "Disable";
+            radioButton_Other_Disable.UseVisualStyleBackColor = true;
+            // 
+            // radioButton_Other_Enable
+            // 
+            radioButton_Other_Enable.AutoSize = true;
+            radioButton_Other_Enable.Location = new Point(136, 219);
+            radioButton_Other_Enable.Name = "radioButton_Other_Enable";
+            radioButton_Other_Enable.Size = new Size(90, 27);
+            radioButton_Other_Enable.TabIndex = 31;
+            radioButton_Other_Enable.TabStop = true;
+            radioButton_Other_Enable.Text = "Enable";
+            radioButton_Other_Enable.UseVisualStyleBackColor = true;
+            // 
+            // comboBoxOther_roleName
+            // 
+            comboBoxOther_roleName.FormattingEnabled = true;
+            comboBoxOther_roleName.Location = new Point(136, 171);
+            comboBoxOther_roleName.Name = "comboBoxOther_roleName";
+            comboBoxOther_roleName.Size = new Size(201, 31);
+            comboBoxOther_roleName.TabIndex = 30;
+            // 
+            // txtOtherPassword
+            // 
+            txtOtherPassword.Location = new Point(136, 117);
+            txtOtherPassword.Name = "txtOtherPassword";
+            txtOtherPassword.Size = new Size(201, 31);
+            txtOtherPassword.TabIndex = 29;
+            // 
+            // txtOther_UserName
+            // 
+            txtOther_UserName.Location = new Point(136, 70);
+            txtOther_UserName.Name = "txtOther_UserName";
+            txtOther_UserName.Size = new Size(201, 31);
+            txtOther_UserName.TabIndex = 28;
+            // 
+            // label24
+            // 
+            label24.AutoSize = true;
+            label24.Location = new Point(36, 221);
+            label24.Name = "label24";
+            label24.Size = new Size(69, 23);
+            label24.TabIndex = 27;
+            label24.Text = "Status:";
+            label24.Click += label19_Click;
+            // 
+            // label23
+            // 
+            label23.AutoSize = true;
+            label23.Location = new Point(6, 174);
+            label23.Name = "label23";
+            label23.Size = new Size(104, 23);
+            label23.TabIndex = 27;
+            label23.Text = "RoleName:";
+            label23.Click += label19_Click;
+            // 
+            // label22
+            // 
+            label22.AutoSize = true;
+            label22.Location = new Point(11, 120);
+            label22.Name = "label22";
+            label22.Size = new Size(99, 23);
+            label22.TabIndex = 27;
+            label22.Text = "Password:";
+            label22.Click += label19_Click;
+            // 
+            // label21
+            // 
+            label21.AutoSize = true;
+            label21.Location = new Point(6, 73);
+            label21.Name = "label21";
+            label21.Size = new Size(103, 23);
+            label21.TabIndex = 27;
+            label21.Text = "Username:";
+            label21.Click += label19_Click;
+            // 
+            // label19
+            // 
+            label19.AutoSize = true;
+            label19.Location = new Point(67, 44);
+            label19.Name = "label19";
+            label19.Size = new Size(38, 23);
+            label19.TabIndex = 27;
+            label19.Text = "ID: ";
+            label19.Click += label19_Click;
+            // 
+            // dgvOther_Account
+            // 
+            dgvOther_Account.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvOther_Account.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvOther_Account.Columns.AddRange(new DataGridViewColumn[] { AccountColumn1, AccountColumn2, AccountColumn3, AccountColumn4 });
+            dgvOther_Account.Cursor = Cursors.Hand;
+            dgvOther_Account.Location = new Point(28, 41);
+            dgvOther_Account.Margin = new Padding(4, 3, 4, 3);
+            dgvOther_Account.Name = "dgvOther_Account";
+            dgvOther_Account.ReadOnly = true;
+            dgvOther_Account.RowHeadersWidth = 51;
+            dgvOther_Account.RowTemplate.Height = 29;
+            dgvOther_Account.Size = new Size(472, 687);
+            dgvOther_Account.TabIndex = 26;
+            dgvOther_Account.CellContentClick += dgvOther_Account_CellContentClick;
+            // 
+            // AccountColumn1
+            // 
+            AccountColumn1.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+            AccountColumn1.FillWeight = 106.951874F;
+            AccountColumn1.HeaderText = "ID";
+            AccountColumn1.MinimumWidth = 6;
+            AccountColumn1.Name = "AccountColumn1";
+            AccountColumn1.ReadOnly = true;
+            AccountColumn1.Width = 50;
+            // 
+            // AccountColumn2
+            // 
+            AccountColumn2.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+            AccountColumn2.FillWeight = 97.68271F;
+            AccountColumn2.HeaderText = "Username";
+            AccountColumn2.MinimumWidth = 6;
+            AccountColumn2.Name = "AccountColumn2";
+            AccountColumn2.ReadOnly = true;
+            AccountColumn2.Width = 130;
+            // 
+            // AccountColumn3
+            // 
+            AccountColumn3.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+            AccountColumn3.FillWeight = 97.68271F;
+            AccountColumn3.HeaderText = "RoleName";
+            AccountColumn3.MinimumWidth = 6;
+            AccountColumn3.Name = "AccountColumn3";
+            AccountColumn3.ReadOnly = true;
+            AccountColumn3.Width = 120;
+            // 
+            // AccountColumn4
+            // 
+            AccountColumn4.FillWeight = 97.68271F;
+            AccountColumn4.HeaderText = "Status";
+            AccountColumn4.MinimumWidth = 6;
+            AccountColumn4.Name = "AccountColumn4";
+            AccountColumn4.ReadOnly = true;
             // 
             // AdminHome
             // 
@@ -1212,6 +1617,15 @@
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvBorrowings).EndInit();
+            tabPage_Acc_Pro.ResumeLayout(false);
+            groupBox6.ResumeLayout(false);
+            groupBox8.ResumeLayout(false);
+            groupBox8.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvOther_Category).EndInit();
+            groupBox5.ResumeLayout(false);
+            groupBox7.ResumeLayout(false);
+            groupBox7.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvOther_Account).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -1225,7 +1639,6 @@
         private TabPage tabPage_BookList;
         private TabPage tabPage_BorrowList;
         private TabPage tabPage_Acc_Pro;
-        private TabPage tabPage_Other;
         private GroupBox groupBox_BookInfo;
         private Panel panel1;
         private Label lblId;
@@ -1255,9 +1668,6 @@
         private Button buttonBorrowAdd;
         private Button buttonBorrowUpdate;
         private Button buttonBorrowDelete;
-        private Button button5;
-        private TextBox textBox5;
-        private Label label17;
         private DataGridView dgvBorrowings;
         private DataGridViewTextBoxColumn BookColumn1;
         private DataGridViewTextBoxColumn BookColumn2;
@@ -1308,5 +1718,42 @@
         private DataGridViewTextBoxColumn dgvBook2Column4;
         private DataGridViewTextBoxColumn dgvBook2Column5;
         private DataGridViewTextBoxColumn dgvBook2Column6;
+        private DateTimePicker dateTimePickerDueDate;
+        private DateTimePicker dateTimePickerBorrowDate;
+        private Label label14;
+        private Label label17;
+        private GroupBox groupBox5;
+        private DataGridView dgvOther_Account;
+        private GroupBox groupBox6;
+        private DataGridView dgvOther_Category;
+        private GroupBox groupBox7;
+        private Label label19;
+        private Label label23;
+        private Label label22;
+        private Label label21;
+        private RadioButton radioButton_Other_Disable;
+        private RadioButton radioButton_Other_Enable;
+        private ComboBox comboBoxOther_roleName;
+        private TextBox txtOtherPassword;
+        private TextBox txtOther_UserName;
+        private Label label24;
+        private Button buttonOtherAddAccount;
+        private Button buttonOtherUpdateAccount;
+        private Button buttonOtherDeleteAccount;
+        private Label lblOtherAccountID;
+        private GroupBox groupBox8;
+        private Label lblOther_CatID;
+        private TextBox txtOther_CategoryName;
+        private Label label27;
+        private Label label28;
+        private Button buttonOtherAddCat;
+        private Button buttonOtherUpdCat;
+        private Button buttonOtherDelCat;
+        private DataGridViewTextBoxColumn AccountColumn1;
+        private DataGridViewTextBoxColumn AccountColumn2;
+        private DataGridViewTextBoxColumn AccountColumn3;
+        private DataGridViewTextBoxColumn AccountColumn4;
+        private DataGridViewTextBoxColumn CategoryColumn1;
+        private DataGridViewTextBoxColumn CategoryColumn2;
     }
 }

@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace PRN211_Project_LibraryManagement
 {
@@ -45,6 +46,8 @@ namespace PRN211_Project_LibraryManagement
             List<Book> books = iBook.GetAllBooks();
             List<Borrowing> borrowings = iBorrowing.GetAllBorrowings();
             List<UserProfile> userProfiles = iUserProfile.GetAllUserProfiles();
+            List<Account> accounts = iAccount.GetAllAccounts();
+            List<Category> categories = iCat.GetAllCategories();
             // Display all book dgv
             displayDGVBooks(books);
             // Display all borrowing dgv
@@ -59,6 +62,16 @@ namespace PRN211_Project_LibraryManagement
             loadBorrowInformation();
             // Display all UserProfile dgv
             displayDGVUserProfles(userProfiles);
+            // Display all Accounts dgv
+            displayDGVAccounts(accounts);
+            // Load account info
+            loadAccountInformation();
+            // Load rolename combobox
+            loadRoleName();
+            // Display all Categories dgv
+            displayDGVCategories(categories);
+            // Load Cat information
+            loadCategoryInformation();
         }
 
 
@@ -81,7 +94,7 @@ namespace PRN211_Project_LibraryManagement
             foreach (var item in userProfiles)
             {
                 //dgvUserProfiles.Rows.Add(item.UserProfileId, item.Quantity, item.Title, item.Author, item.Category.CategoryName, item.Description);
-                string gender = (item.Gender.Value) ? "Male" : "Female";
+                string gender = (item.Gender == null) ? "Unknown" : (item.Gender.Value) ? "Male" : "Female";
                 dgvUserProfile2.Rows.Add(item.AccountId, item.FullName, item.Age, gender, item.Address, item.Email);
             }
         }
@@ -123,7 +136,23 @@ namespace PRN211_Project_LibraryManagement
             }
         }
 
-        private Image image;
+        void displayDGVAccounts(List<Account> accounts)
+        {
+            dgvOther_Account.Rows.Clear();
+            foreach (var item in accounts)
+            {
+                string status = (item.Status) ? "Enabled" : "Disabled";
+                dgvOther_Account.Rows.Add(item.AccountId, item.Username, item.RoleName, status);
+            }
+        }
+        void displayDGVCategories(List<Category> categories)
+        {
+            dgvOther_Category.Rows.Clear();
+            foreach (var item in categories)
+            {
+                dgvOther_Category.Rows.Add(item.CategoryId, item.CategoryName);
+            }
+        }
 
         private void buttonUpload_Click(object sender, EventArgs e)
         {
@@ -175,6 +204,15 @@ namespace PRN211_Project_LibraryManagement
             comboBox_BorrowStatus.ValueMember = "StatusId";
             comboBox_BorrowStatus.DataSource = statuses;
         }
+        private void loadRoleName()
+        {
+            List<Account> accounts = iAccount.GetAllAccounts();
+            var groupByRoleName = accounts.GroupBy((x) => x.RoleName).ToList();
+            comboBoxOther_roleName.DisplayMember = "key";
+            comboBoxOther_roleName.ValueMember = "key";
+            comboBoxOther_roleName.DataSource = groupByRoleName;
+        }
+
 
         private void loadBookInformation()
         {
@@ -234,6 +272,28 @@ namespace PRN211_Project_LibraryManagement
             }
         }
 
+        void loadAccountInformation()
+        {
+            lblOtherAccountID.Text = dgvOther_Account.Rows[0].Cells["AccountColumn1"].Value.ToString();
+            txtOther_UserName.Text = dgvOther_Account.Rows[0].Cells["AccountColumn2"].Value.ToString();
+            comboBoxOther_roleName.Text = dgvOther_Account.Rows[0].Cells["AccountColumn3"].Value.ToString();
+            string status = dgvOther_Account.Rows[0].Cells["AccountColumn4"].Value.ToString();
+            if (status.Equals("Enabled"))
+            {
+                radioButton_Other_Enable.Checked = true;
+            }
+            else
+            {
+                radioButton_Other_Disable.Checked = true;
+            }
+        }
+
+        void loadCategoryInformation()
+        {
+            lblOther_CatID.Text = dgvOther_Category.Rows[0].Cells["CategoryColumn1"].Value.ToString();
+            txtOther_CategoryName.Text = dgvOther_Category.Rows[0].Cells["CategoryColumn2"].Value.ToString();
+        }
+
         void refreshDGVBook()
         {
             List<Book> books = iBook.GetAllBooks();
@@ -244,6 +304,24 @@ namespace PRN211_Project_LibraryManagement
         {
             List<Borrowing> books = iBorrowing.GetAllBorrowings();
             displayDGVBorrowings(books);
+        }
+
+        void refreshDGVAccount()
+        {
+            List<Account> accounts = iAccount.GetAllAccounts();
+            displayDGVAccounts(accounts);
+        }
+
+        void refreshDGVUserProfile()
+        {
+            List<UserProfile> userProfiles = iUserProfile.GetAllUserProfiles();
+            displayDGVUserProfles(userProfiles);
+        }
+
+        void refreshDGVCategory()
+        {
+            List<Category> categories = iCat.GetAllCategories();
+            displayDGVCategories(categories);
         }
 
         private void buttonLogOut_Click_1(object sender, EventArgs e)
@@ -310,7 +388,6 @@ namespace PRN211_Project_LibraryManagement
         {
             try
             {
-                image = null;
                 book.Title = txtTitle.Text;
                 book.Author = txtAuthor.Text;
                 book.Description = txtDescription.Text;
@@ -547,7 +624,7 @@ namespace PRN211_Project_LibraryManagement
                        , "DELETE", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (check == DialogResult.Yes)
             {
-                int id = int.Parse(lblId.Text);
+                int id = int.Parse(lblBorrowId.Text);
                 Borrowing deleteBorrowing = iBorrowing.GetBorrowingById(id);
                 iBorrowing.DeleteBorrowing(deleteBorrowing);
                 MessageBox.Show("DELETE SUCCESSFULLY!", "SUCCESSFUL");
@@ -574,6 +651,196 @@ namespace PRN211_Project_LibraryManagement
                 , "Due Date", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 dateTimePickerDue.Text = tomorrow.ToString();
 
+            }
+        }
+
+        private void dateTimePickerBorrowDate_ValueChanged(object sender, EventArgs e)
+        {
+            List<Borrowing> borrowingList = iBorrowing.GetAllBorrowings();
+            string borrowDate = dateTimePickerBorrowDate.Text;
+            List<Borrowing> result = iBorrowing.getBorrowingsByBorrowDate(borrowingList, DateTime.Parse(borrowDate));
+            displayDGVBorrowings(result);
+        }
+
+        private void dateTimePickerDueDate_ValueChanged(object sender, EventArgs e)
+        {
+            List<Borrowing> borrowingList = iBorrowing.GetAllBorrowings();
+            DateTime dueDate = dateTimePickerDueDate.Value;
+            List<Borrowing> result = iBorrowing.getBorrowingsByDueDate(borrowingList, dueDate);
+            displayDGVBorrowings(result);
+        }
+
+        private void label19_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            MyProfile myProfile = new MyProfile(currentAccount);
+            myProfile.Show();
+        }
+
+        private void dgvOther_Account_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                lblOtherAccountID.Text = dgvOther_Account.Rows[e.RowIndex].Cells["AccountColumn1"].Value.ToString();
+                txtOther_UserName.Text = dgvOther_Account.Rows[e.RowIndex].Cells["AccountColumn2"].Value.ToString();
+                comboBoxOther_roleName.Text = dgvOther_Account.Rows[e.RowIndex].Cells["AccountColumn3"].Value.ToString();
+                string status = dgvOther_Account.Rows[e.RowIndex].Cells["AccountColumn4"].Value.ToString();
+                if (status.Equals("Enabled"))
+                {
+                    radioButton_Other_Enable.Checked = true;
+                }
+                else
+                {
+                    radioButton_Other_Disable.Checked = true;
+                }
+            }
+        }
+
+        private void dgvOther_Category_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                lblOther_CatID.Text = dgvOther_Category.Rows[e.RowIndex].Cells["CategoryColumn1"].Value.ToString();
+                txtOther_CategoryName.Text = dgvOther_Category.Rows[e.RowIndex].Cells["CategoryColumn2"].Value.ToString();
+            }
+        }
+
+        private void buttonOtherAddAccount_Click(object sender, EventArgs e)
+        {
+            string fullName, userName, password, confirm;
+            userName = txtOther_UserName.Text;
+            if (iAccount.GetAccountByUsername(userName) != null)
+            {
+                DialogResult check = MessageBox.Show("The username already exist! Do you mean update?"
+                      , "ADD", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (check == DialogResult.Yes)
+                {
+                    int id = int.Parse(lblOtherAccountID.Text);
+                    Account account = iAccount.GetAccountById(id);
+                    account.RoleName = comboBoxOther_roleName.SelectedValue.ToString();
+                    Boolean status = (radioButton_Other_Enable.Checked) ? true : false;
+                    account.Status = status;
+                    iAccount.UpdateAccount(account);
+                    MessageBox.Show("ROLENAME/STATUS UPDATE SUCCESSFULLY!", "UPDATE ACCOUNT SUCCESSFULLY!");
+                    refreshDGVAccount();
+                    loadAccountInformation();
+                }
+
+            }
+            else
+            {
+                password = txtOtherPassword.Text;
+                if (password.Length == 0)
+                {
+                    MessageBox.Show("Password required! Please enter password!"
+                      , "ADD FAIL", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                }
+                else
+                {
+                    DialogResult check = MessageBox.Show("Do you want to add this account?"
+                     , "ADD", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (check == DialogResult.Yes)
+                    {
+                        Account newAcc = new Account();
+                        UserProfile newUp = new UserProfile();
+                        int newID = iAccount.GetLastID() + 1;
+                        newAcc.AccountId = newID;
+                        newAcc.Username = userName;
+                        newAcc.Password = password;
+                        newAcc.RoleName = comboBoxOther_roleName.SelectedValue.ToString();
+                        Boolean status = (radioButton_Other_Enable.Checked) ? true : false;
+                        newAcc.Status = status;
+                        newUp.UserProfileId = iUserProfile.GetLastID() + 1;
+                        newUp.FullName = userName;
+                        newUp.AccountId = newID;
+                        iAccount.AddAccount(newAcc);
+                        iUserProfile.AddUserProfile(newUp);
+                        MessageBox.Show("ADD ACCOUNT SUCCESSFULLY!", "ADD ACCOUNT SUCCESSFULLY!");
+                        refreshDGVAccount();
+                        refreshDGVUserProfile();
+                        loadAccountInformation();
+
+                    }
+                }
+
+            }
+        }
+
+        private void buttonOtherUpdateAccount_Click(object sender, EventArgs e)
+        {
+            DialogResult check = MessageBox.Show("Do you want to update this account?"
+                     , "UPDATE", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (check == DialogResult.Yes)
+            {
+                int id = int.Parse(lblOtherAccountID.Text);
+                Account account = iAccount.GetAccountById(id);
+                account.RoleName = comboBoxOther_roleName.SelectedValue.ToString();
+                Boolean status = (radioButton_Other_Enable.Checked) ? true : false;
+                account.Status = status;
+                iAccount.UpdateAccount(account);
+                MessageBox.Show("ROLENAME/STATUS UPDATE SUCCESSFULLY!", "UPDATE ACCOUNT SUCCESSFULLY!");
+                refreshDGVAccount();
+                loadAccountInformation();
+            }
+        }
+
+        private void buttonOtherDeleteAccount_Click(object sender, EventArgs e)
+        {
+            DialogResult check = MessageBox.Show("To delete this account, you have to delete everything relating to them!\nDisable them if you want!"
+                     , "DELETE", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+
+        }
+
+        private void buttonOtherDelCat_Click(object sender, EventArgs e)
+        {
+            DialogResult check = MessageBox.Show("To delete this category, you have to delete everything relating to them!\nChange their name either!"
+                   , "DELETE", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+        }
+
+        private void buttonOtherAddCat_Click(object sender, EventArgs e)
+        {
+            string name = txtOther_CategoryName.Text;
+            if (iCat.GetCategoryByName(name) != null)
+            {
+                DialogResult check = MessageBox.Show("The category name already exist! Please try another one!"
+                   , "ADD", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                Category category = new Category();
+                category.CategoryId = iCat.GetLastID() + 1;
+                category.CategoryName = name;
+                iCat.AddCategory(category);
+                MessageBox.Show("ADD CATEGORY SUCCESSFULLY!", "ADD CATEGORY SUCCESSFULLY!");
+                refreshDGVCategory();
+                refreshDGVCategory();
+                loadCategory();
+                loadCategoryInformation();
+            }
+        }
+
+        private void buttonOtherUpdCat_Click(object sender, EventArgs e)
+        {
+            string name = txtOther_CategoryName.Text;
+            int id = int.Parse(lblOther_CatID.Text);
+            Category cate = iCat.GetCategoryById(id);
+            if (iCat.GetCategoryByName(name).CategoryId != cate.CategoryId)
+            {
+                DialogResult check = MessageBox.Show("The category name already exist! Please try another one!"
+                   , "UPDATE", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                cate.CategoryName = name;
+                iCat.UpdateCategory(cate);
+                MessageBox.Show("UPDATE CATEGORY SUCCESSFULLY!", "UPDATE CATEGORY SUCCESSFULLY!");
+                refreshDGVCategory();
+                loadCategoryInformation();
             }
         }
     }

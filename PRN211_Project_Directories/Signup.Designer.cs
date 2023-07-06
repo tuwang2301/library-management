@@ -38,8 +38,6 @@
             label3 = new Label();
             txtConfirm = new TextBox();
             label4 = new Label();
-            txtEmail = new TextBox();
-            label5 = new Label();
             btnSignup = new Button();
             pictureBox2 = new PictureBox();
             pictureBox3 = new PictureBox();
@@ -128,30 +126,13 @@
             label4.TabIndex = 11;
             label4.Text = "Confirm Password";
             // 
-            // txtEmail
-            // 
-            txtEmail.Location = new Point(34, 468);
-            txtEmail.Name = "txtEmail";
-            txtEmail.Size = new Size(504, 27);
-            txtEmail.TabIndex = 14;
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Font = new Font("Cambria", 10.8F, FontStyle.Bold, GraphicsUnit.Point);
-            label5.Location = new Point(34, 444);
-            label5.Name = "label5";
-            label5.Size = new Size(58, 21);
-            label5.TabIndex = 13;
-            label5.Text = "Email";
-            // 
             // btnSignup
             // 
             btnSignup.Cursor = Cursors.Hand;
             btnSignup.Font = new Font("Cambria", 10.8F, FontStyle.Bold, GraphicsUnit.Point);
-            btnSignup.Location = new Point(226, 523);
+            btnSignup.Location = new Point(217, 467);
             btnSignup.Name = "btnSignup";
-            btnSignup.Size = new Size(106, 29);
+            btnSignup.Size = new Size(133, 43);
             btnSignup.TabIndex = 15;
             btnSignup.Text = "Signup";
             btnSignup.UseVisualStyleBackColor = true;
@@ -187,12 +168,10 @@
             AutoScaleDimensions = new SizeF(9F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ButtonHighlight;
-            ClientSize = new Size(577, 578);
+            ClientSize = new Size(577, 542);
             Controls.Add(pictureBox3);
             Controls.Add(pictureBox2);
             Controls.Add(btnSignup);
-            Controls.Add(txtEmail);
-            Controls.Add(label5);
             Controls.Add(txtConfirm);
             Controls.Add(label4);
             Controls.Add(txtPassword);
@@ -223,8 +202,6 @@
         private Label label3;
         private TextBox txtConfirm;
         private Label label4;
-        private TextBox txtEmail;
-        private Label label5;
         private Button btnSignup;
         private PictureBox pictureBox2;
         private PictureBox pictureBox3;
