@@ -421,6 +421,7 @@
             // 
             // buttonBorrow
             // 
+            buttonBorrow.Cursor = Cursors.Hand;
             buttonBorrow.Location = new Point(327, 15);
             buttonBorrow.Name = "buttonBorrow";
             buttonBorrow.Size = new Size(94, 138);
@@ -454,6 +455,7 @@
             // 
             // dateTimePickerDue
             // 
+            dateTimePickerDue.Cursor = Cursors.Hand;
             dateTimePickerDue.Font = new Font("Cambria", 12F, FontStyle.Regular, GraphicsUnit.Point);
             dateTimePickerDue.Format = DateTimePickerFormat.Short;
             dateTimePickerDue.Location = new Point(145, 122);

@@ -24,6 +24,8 @@ namespace PRN211_Project_LibraryManagement.Repository
         public Borrowing GetBorrowingById(int id);
 
         public List<Borrowing> getBorrowingsByAccountID(int accountId);
+        public Borrowing getBorrowingByAccountBookID(int accountId, int bookId);
+
 
         public List<Borrowing> getBorrowingsByBookID(List<Borrowing> borrowings, int bookId);
 

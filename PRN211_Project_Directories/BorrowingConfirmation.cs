@@ -88,7 +88,7 @@ namespace PRN211_Project_LibraryManagement
             DateTime today = DateTime.Today;
             DateTime due = dateTimePickerDue.Value;
             Borrowing newBorrowing = new Borrowing();
-            newBorrowing.BorrowingId = myBorrowings[myBorrowings.Count - 1].BorrowingId + 1;
+            newBorrowing.BorrowingId = iBr.GetLastID() + 1;
             newBorrowing.AccountId = borrowAccount.AccountId;
             newBorrowing.BookId = borrowBook.BookId;
             newBorrowing.BorrowDate = today;

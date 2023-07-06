@@ -22,6 +22,8 @@ namespace PRN211_Project_LibraryManagement.Repository
         /// <param name="password"></param>
         /// <returns></returns>
         public Book GetBookById(int id);
+        public Book GetBookByTitle(string title);
+
 
         public List<Book> getBooks(string searchStr);
 

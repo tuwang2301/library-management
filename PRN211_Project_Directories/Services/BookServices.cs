@@ -100,5 +100,15 @@ namespace PRN211_Project_LibraryManagement.Services
                 return 0; // hoặc giá trị mặc định khác tùy vào yêu cầu của bạn
             }
         }
+
+        public Book GetBookByTitle(string title)
+        {
+            Book book = new Book();
+            using (var con = new LibraryManagementContext())
+            {
+                book = con.Books.Where((x) => x.Title.ToLower().Equals(title.ToLower())).FirstOrDefault();
+            }
+            return book;
+        }
     }
 }
