@@ -19,22 +19,20 @@ namespace PRN211_Project_LibraryManagement
         {
             InitializeComponent();
         }
-        private static IUserProfile iU = new UserProfileServices();
         private static IAccount iC = new AccountServices();
 
         private void btnGetPassword_Click(object sender, EventArgs e)
         {
-            string email = txtEmail.Text;
-            UserProfile uP = iU.GetUserProfileByEmail(email);
-           
-            if (uP != null)
+            string username = txtUsername.Text;
+            Account result = iC.GetAccountByUsername(username);
+
+            if (result != null)
             {
-                Account a = iC.GetAccountById(uP.AccountId);
-                txtResult.Text = a.Password;
+                txtResult.Text = result.Password;
             }
             else
             {
-                MessageBox.Show("Your email does not exist!\nPlease try again or create new account", "Wrong email!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Your Username does not exist!\nPlease try again or create new account", "Wrong username!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
 
         }

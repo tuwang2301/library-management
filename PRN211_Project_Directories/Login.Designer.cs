@@ -60,7 +60,7 @@
             // 
             pictureBox1.BackgroundImage = (Image)resources.GetObject("pictureBox1.BackgroundImage");
             pictureBox1.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox1.Location = new Point(181, 113);
+            pictureBox1.Location = new Point(176, 122);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(219, 199);
             pictureBox1.TabIndex = 1;
@@ -80,7 +80,7 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Cambria", 10.8F, FontStyle.Bold, GraphicsUnit.Point);
-            label3.Location = new Point(71, 409);
+            label3.Location = new Point(71, 410);
             label3.Name = "label3";
             label3.Size = new Size(90, 21);
             label3.TabIndex = 3;
@@ -133,9 +133,9 @@
             // 
             btnLogin.Cursor = Cursors.Hand;
             btnLogin.Font = new Font("Cambria", 10.8F, FontStyle.Bold, GraphicsUnit.Point);
-            btnLogin.Location = new Point(234, 512);
+            btnLogin.Location = new Point(234, 511);
             btnLogin.Name = "btnLogin";
-            btnLogin.Size = new Size(106, 29);
+            btnLogin.Size = new Size(106, 30);
             btnLogin.TabIndex = 3;
             btnLogin.Text = "Login";
             btnLogin.UseVisualStyleBackColor = true;

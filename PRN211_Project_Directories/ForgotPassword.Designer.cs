@@ -33,7 +33,7 @@
             pictureBox1 = new PictureBox();
             label2 = new Label();
             label3 = new Label();
-            txtEmail = new TextBox();
+            txtUsername = new TextBox();
             txtResult = new TextBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
@@ -66,9 +66,9 @@
             label2.Font = new Font("Cambria", 10.8F, FontStyle.Bold, GraphicsUnit.Point);
             label2.Location = new Point(78, 297);
             label2.Name = "label2";
-            label2.Size = new Size(100, 21);
+            label2.Size = new Size(95, 21);
             label2.TabIndex = 11;
-            label2.Text = "Your email";
+            label2.Text = "Username";
             // 
             // label3
             // 
@@ -80,12 +80,12 @@
             label3.TabIndex = 12;
             label3.Text = "Result";
             // 
-            // txtEmail
+            // txtUsername
             // 
-            txtEmail.Location = new Point(204, 295);
-            txtEmail.Name = "txtEmail";
-            txtEmail.Size = new Size(298, 27);
-            txtEmail.TabIndex = 13;
+            txtUsername.Location = new Point(204, 295);
+            txtUsername.Name = "txtUsername";
+            txtUsername.Size = new Size(298, 27);
+            txtUsername.TabIndex = 13;
             // 
             // txtResult
             // 
@@ -103,7 +103,7 @@
             ClientSize = new Size(579, 484);
             Controls.Add(txtResult);
             Controls.Add(btnGetPassword);
-            Controls.Add(txtEmail);
+            Controls.Add(txtUsername);
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(pictureBox1);
@@ -121,7 +121,7 @@
         private PictureBox pictureBox1;
         private Label label2;
         private Label label3;
-        private TextBox txtEmail;
+        private TextBox txtUsername;
         private TextBox txtResult;
     }
 }

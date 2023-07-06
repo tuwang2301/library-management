@@ -71,7 +71,7 @@ namespace PRN211_Project_LibraryManagement
 
             if (currentUserProfile.Age != null)
             {
-                numericUpDown_Age.Value = (decimal)currentUserProfile.Age;
+                numericUpDown_Age.Text = currentUserProfile.Age.ToString();
             }
             else
             {
@@ -97,14 +97,28 @@ namespace PRN211_Project_LibraryManagement
         private void buttonSaveEdit_Click(object sender, EventArgs e)
         {
             UserProfile edit = iU.GetUserProfile(currentAccount.AccountId);
-            edit.FullName = txtFullName.Text;
-            edit.Email = txtEmail.Text;
-            edit.Address = txtAddress.Text;
-            edit.Age = (int)numericUpDown_Age.Value;
-            edit.Gender = (radioButton_Female.Checked) ? false : true;
-            iU.UpdateUserProfile(edit);
-            MessageBox.Show("New information saved successfully!", "Edit successfully");
-            refreshForm();
+
+            string newEmail = txtEmail.Text;
+            if (iU.GetUserProfileByEmail(newEmail) != null)
+            {
+                if (iU.GetUserProfileByEmail(newEmail).UserProfileId != edit.UserProfileId)
+                {
+                    MessageBox.Show("Email already exist! Please try again!", "Email exist!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+            }
+            else
+            {
+                edit.FullName = txtFullName.Text;
+                edit.Email = txtEmail.Text;
+                edit.Address = txtAddress.Text;
+                edit.Age = (int)numericUpDown_Age.Value;
+                edit.Gender = (radioButton_Female.Checked) ? false : true;
+                iU.UpdateUserProfile(edit);
+                MessageBox.Show("New information saved successfully!", "Edit successfully");
+                refreshForm();
+
+            }
+               
         }
     }
 }
