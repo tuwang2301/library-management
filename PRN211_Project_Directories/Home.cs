@@ -82,7 +82,7 @@ namespace PRN211_Project_LibraryManagement
             book.Category = iCat.GetCategoryById(book.CategoryId);
             try
             {
-                string coverUrl = $"C:\\Users\\quang\\Documents\\FPT\\Summer2023\\PRN211\\Library_Management\\library-management\\PRN211_Project_Directories\\img\\{book.CoverPictureUrl}";
+                string coverUrl = $"D:\\FPT\\Summer2023\\PRN211\\Library_Management\\library-management\\PRN211_Project_Directories\\img\\{book.CoverPictureUrl}";
                 // Kiểm tra xem tập tin ảnh có tồn tại không
                 if (System.IO.File.Exists(coverUrl))
                 {
@@ -117,7 +117,7 @@ namespace PRN211_Project_LibraryManagement
                 {
                     int id = int.Parse(dgvBooks.Rows[e.RowIndex].Cells["Column1"].Value.ToString());
                     Book book = iBook.GetBookById(id);
-                    string coverUrl = $"C:\\Users\\quang\\Documents\\FPT\\Summer2023\\PRN211\\Library_Management\\library-management\\PRN211_Project_Directories\\img\\{book.CoverPictureUrl}";
+                    string coverUrl = $"D:\\FPT\\Summer2023\\PRN211\\Library_Management\\library-management\\PRN211_Project_Directories\\img\\{book.CoverPictureUrl}";
                     // Kiểm tra xem tập tin ảnh có tồn tại không
                     if (System.IO.File.Exists(coverUrl))
                     {
@@ -171,9 +171,18 @@ namespace PRN211_Project_LibraryManagement
 
         private void btnBorrow_Click(object sender, EventArgs e)
         {
-            int bookId = int.Parse(lblId.Text);
+			List<Book> books = iBook.GetAllBooks();
+			displayDGV(books);
+			int bookId = int.Parse(lblId.Text);
             List<Borrowing> myBorrowings = iBorrowing.getBorrowingsByAccountID(currentAccount.AccountId);
             List<Borrowing> check = iBorrowing.getBorrowingsByBookID(myBorrowings, bookId);
+			Book chosenbook = iBook.GetBookById(bookId);
+			if (chosenbook.Quantity == 0)
+            {
+				MessageBox.Show("This book is out of stock right now! Please come back later"
+				 , "Borrowing", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+			}
             if (check.Count > 0)
             {
                 MessageBox.Show("You are borrowing this book!"
@@ -181,7 +190,6 @@ namespace PRN211_Project_LibraryManagement
             }
             else
             {
-                Book chosenbook = iBook.GetBookById(bookId);
                 BorrowingConfirmation borrowingConfirm = new BorrowingConfirmation(currentAccount, chosenbook);
                 borrowingConfirm.ShowDialog();
             }

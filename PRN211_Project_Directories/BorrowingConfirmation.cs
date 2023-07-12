@@ -39,14 +39,14 @@ namespace PRN211_Project_LibraryManagement
             lblFullname.Text = uP.FullName;
             lblEmail.Text = uP.Email;
             lblAge.Text = uP.Age.ToString();
-            lblGender.Text = (uP.Gender.Value) ? "Male" : "Female";
+            lblGender.Text = (uP.Gender == null) ? "Unknown" : (uP.Gender.Value) ? "Male" : "Female";
             lblAddress.Text = uP.Address;
 
             //Book
             borrowBook.Category = iC.GetCategoryById(borrowBook.CategoryId);
             try
             {
-                string coverUrl = $"C:\\Users\\quang\\Documents\\FPT\\Summer2023\\PRN211\\Library_Management\\library-management\\PRN211_Project_Directories\\img\\{borrowBook.CoverPictureUrl}";
+                string coverUrl = $"D:\\FPT\\Summer2023\\PRN211\\Library_Management\\library-management\\PRN211_Project_Directories\\img\\{borrowBook.CoverPictureUrl}";
                 // Kiểm tra xem tập tin ảnh có tồn tại không
                 if (System.IO.File.Exists(coverUrl))
                 {
