@@ -21,7 +21,12 @@ namespace PRN211_Project_LibraryManagement
         private static IBorrowing iBr = new BorrowingServices();
         private static ICategory iC = new CategoryServices();
         private static IBook iB = new BookServices();
-        public BorrowingConfirmation()
+		private static string workingDirectory = Environment.CurrentDirectory;
+		// or: Directory.GetCurrentDirectory() gives the same result
+
+		// This will get the current PROJECT directory
+		private string projectDirectory = Directory.GetParent(workingDirectory).Parent.Parent.FullName;
+		public BorrowingConfirmation()
         {
             InitializeComponent();
         }
@@ -39,14 +44,14 @@ namespace PRN211_Project_LibraryManagement
             lblFullname.Text = uP.FullName;
             lblEmail.Text = uP.Email;
             lblAge.Text = uP.Age.ToString();
-            lblGender.Text = (uP.Gender.Value) ? "Male" : "Female";
+            lblGender.Text = (uP.Gender == null) ? "Unknown" : (uP.Gender.Value) ? "Male" : "Female";
             lblAddress.Text = uP.Address;
 
             //Book
             borrowBook.Category = iC.GetCategoryById(borrowBook.CategoryId);
             try
             {
-                string coverUrl = $"C:\\Users\\quang\\Documents\\FPT\\Summer2023\\PRN211\\Library_Management\\library-management\\PRN211_Project_Directories\\img\\{borrowBook.CoverPictureUrl}";
+                string coverUrl = $"{projectDirectory}\\img\\{borrowBook.CoverPictureUrl}";
                 // Kiểm tra xem tập tin ảnh có tồn tại không
                 if (System.IO.File.Exists(coverUrl))
                 {

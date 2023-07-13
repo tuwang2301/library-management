@@ -21,9 +21,14 @@ namespace PRN211_Project_LibraryManagement
         private static IBorrowing iBorrowing = new BorrowingServices();
         private static IBook iBook = new BookServices();
         private static ICategory iCat = new CategoryServices();
+		private static string workingDirectory = Environment.CurrentDirectory;
+		// or: Directory.GetCurrentDirectory() gives the same result
+
+		// This will get the current PROJECT directory
+		private string projectDirectory = Directory.GetParent(workingDirectory).Parent.Parent.FullName;
 
 
-        public MyBorrowings()
+		public MyBorrowings()
         {
             InitializeComponent();
         }
@@ -97,7 +102,7 @@ namespace PRN211_Project_LibraryManagement
                     int BookId = int.Parse(dgvBorrowings.Rows[e.RowIndex].Cells["Column2"].Value.ToString());
                     Book book = iBook.GetBookById(BookId);
                     book.Category = iCat.GetCategoryById(book.CategoryId);
-                    string coverUrl = $"C:\\Users\\quang\\Documents\\FPT\\Summer2023\\PRN211\\Library_Management\\library-management\\PRN211_Project_Directories\\img\\{book.CoverPictureUrl}";
+                    string coverUrl = $"{projectDirectory}\\img\\{book.CoverPictureUrl}";
                     // Kiểm tra xem tập tin ảnh có tồn tại không
                     if (System.IO.File.Exists(coverUrl))
                     {
