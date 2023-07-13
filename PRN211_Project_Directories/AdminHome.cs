@@ -24,6 +24,11 @@ namespace PRN211_Project_LibraryManagement
 		private static IUserProfile iUserProfile = new UserProfileServices();
 		private static IAccount iAccount = new AccountServices();
 		private static IStatus iStatus = new StatusServices();
+		private static string workingDirectory = Environment.CurrentDirectory;
+		// or: Directory.GetCurrentDirectory() gives the same result
+
+		// This will get the current PROJECT directory
+		private string projectDirectory = Directory.GetParent(workingDirectory).Parent.Parent.FullName;
 		public AdminHome()
 		{
 			InitializeComponent();
@@ -220,7 +225,7 @@ namespace PRN211_Project_LibraryManagement
 			{
 				int id = int.Parse(dgvBooks.Rows[0].Cells["BookColumn1"].Value.ToString());
 				Book book = iBook.GetBookById(id);
-				string coverUrl = $"D:\\FPT\\Summer2023\\PRN211\\Library_Management\\library-management\\PRN211_Project_Directories\\img\\{book.CoverPictureUrl}";
+				string coverUrl = $"{projectDirectory}\\img\\{book.CoverPictureUrl}";
 				// Kiểm tra xem tập tin ảnh có tồn tại không
 				if (System.IO.File.Exists(coverUrl))
 				{
@@ -355,7 +360,7 @@ namespace PRN211_Project_LibraryManagement
 				{
 					int id = int.Parse(dgvBooks.Rows[e.RowIndex].Cells["BookColumn1"].Value.ToString());
 					Book book = iBook.GetBookById(id);
-					string coverUrl = $"D:\\FPT\\Summer2023\\PRN211\\Library_Management\\library-management\\PRN211_Project_Directories\\img\\{book.CoverPictureUrl}";
+					string coverUrl = $"{projectDirectory}\\img\\{book.CoverPictureUrl}";
 					// Kiểm tra xem tập tin ảnh có tồn tại không
 					if (System.IO.File.Exists(coverUrl))
 					{
@@ -395,7 +400,7 @@ namespace PRN211_Project_LibraryManagement
 				book.Quantity = int.Parse(numericUpDown_Quantity.Text);
 				if (!lblCoverURL.Text.Equals("None"))
 				{
-					string destinationFolderPath = "D:\\FPT\\Summer2023\\PRN211\\Library_Management\\library-management\\PRN211_Project_Directories\\img"; // Thay đổi đường dẫn đến thư mục "img" trong project của bạn
+					string destinationFolderPath = $"{projectDirectory}\\img"; // Thay đổi đường dẫn đến thư mục "img" trong project của bạn
 					string selectedFilePath = lblCoverURL.Text;
 					string newFileName = $"{DateTime.Now.ToString("yyyyMMddHHmmss")}.jpg"; // Thay đổi tên mới theo quy chuẩn của bạn
 					string destinationPath = Path.Combine(destinationFolderPath, newFileName); // Kết hợp đường dẫn thư mục đích và tên tệp tin mới

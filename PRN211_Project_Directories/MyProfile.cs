@@ -18,6 +18,11 @@ namespace PRN211_Project_LibraryManagement
 		private Account currentAccount;
 		private UserProfile currentUserProfile;
 		private static IUserProfile iU = new UserProfileServices();
+		private static string workingDirectory = Environment.CurrentDirectory;
+		// or: Directory.GetCurrentDirectory() gives the same result
+
+		// This will get the current PROJECT directory
+		private string projectDirectory = Directory.GetParent(workingDirectory).Parent.Parent.FullName;
 		public MyProfile()
 		{
 			InitializeComponent();
@@ -49,13 +54,13 @@ namespace PRN211_Project_LibraryManagement
 			{
 				if (currentUserProfile.Gender.Value)
 				{
-					Image image = Image.FromFile("D:\\FPT\\Summer2023\\PRN211\\Library_Management\\library-management\\PRN211_Project_Directories\\img\\man.png");
+					Image image = Image.FromFile($"{projectDirectory}\\img\\man.png");
 					pictureBox1.BackgroundImage = image;
 					radioButton_Male.Checked = true;
 				}
 				else
 				{
-					Image image = Image.FromFile("D:\\FPT\\Summer2023\\PRN211\\Library_Management\\library-management\\PRN211_Project_Directories\\img\\woman.png");
+					Image image = Image.FromFile($"{projectDirectory}\\img\\woman.png");
 					pictureBox1.BackgroundImage = image;
 					radioButton_Female.Checked = true;
 				}
@@ -81,13 +86,13 @@ namespace PRN211_Project_LibraryManagement
 			{
 				if (currentUserProfile.Gender.Value)
 				{
-					Image image = Image.FromFile("D:\\FPT\\Summer2023\\PRN211\\Library_Management\\library-management\\PRN211_Project_Directories\\img\\man.png");
+					Image image = Image.FromFile($"{projectDirectory}\\img\\man.png");
 					pictureBox1.BackgroundImage = image;
 					radioButton_Male.Checked = true;
 				}
 				else
 				{
-					Image image = Image.FromFile("D:\\FPT\\Summer2023\\PRN211\\Library_Management\\library-management\\PRN211_Project_Directories\\img\\woman.png");
+					Image image = Image.FromFile($"{projectDirectory}\\img\\woman.png");
 					pictureBox1.BackgroundImage = image;
 					radioButton_Female.Checked = true;
 				}

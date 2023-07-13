@@ -2,6 +2,7 @@
 using PRN211_Project_LibraryManagement.Repository;
 using PRN211_Project_LibraryManagement.Services;
 using System;
+using System.IO;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -20,7 +21,12 @@ namespace PRN211_Project_LibraryManagement
     {
         Thread th;
         private Account currentAccount;
-        public Home()
+		private static string workingDirectory = Environment.CurrentDirectory;
+		// or: Directory.GetCurrentDirectory() gives the same result
+
+		// This will get the current PROJECT directory
+		private string projectDirectory = Directory.GetParent(workingDirectory).Parent.Parent.FullName;
+		public Home()
         {
             InitializeComponent();
         }
@@ -82,7 +88,7 @@ namespace PRN211_Project_LibraryManagement
             book.Category = iCat.GetCategoryById(book.CategoryId);
             try
             {
-                string coverUrl = $"D:\\FPT\\Summer2023\\PRN211\\Library_Management\\library-management\\PRN211_Project_Directories\\img\\{book.CoverPictureUrl}";
+                string coverUrl = $"{projectDirectory}\\img\\{book.CoverPictureUrl}";
                 // Kiểm tra xem tập tin ảnh có tồn tại không
                 if (System.IO.File.Exists(coverUrl))
                 {
@@ -117,7 +123,7 @@ namespace PRN211_Project_LibraryManagement
                 {
                     int id = int.Parse(dgvBooks.Rows[e.RowIndex].Cells["Column1"].Value.ToString());
                     Book book = iBook.GetBookById(id);
-                    string coverUrl = $"D:\\FPT\\Summer2023\\PRN211\\Library_Management\\library-management\\PRN211_Project_Directories\\img\\{book.CoverPictureUrl}";
+                    string coverUrl = $"{projectDirectory}\\img\\{book.CoverPictureUrl}";
                     // Kiểm tra xem tập tin ảnh có tồn tại không
                     if (System.IO.File.Exists(coverUrl))
                     {
